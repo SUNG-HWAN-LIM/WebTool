@@ -1,5 +1,6 @@
 import React from "react";
 import { HashRouter as Router, Route } from "react-router-dom";
+
 import Home from "Routes/Home";
 import C2 from "Routes/C2";
 import C3 from "Routes/C3";
