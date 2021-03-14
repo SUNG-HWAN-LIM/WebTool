@@ -1,13 +1,13 @@
 import React from "react";
 import { HashRouter as Router, Route } from "react-router-dom";
 import Home from "Routes/Home";
-import Home from "Routes/C2";
-import Home from "Routes/C3";
-import Home from "Routes/C4";
-import Home from "Routes/C5";
-import Home from "Routes/C6";
-import Home from "Routes/C7";
-import Home from "Routes/C8";
+import C2 from "Routes/C2";
+import C3 from "Routes/C3";
+import C4 from "Routes/C4";
+import C5 from "Routes/C5";
+import C6 from "Routes/C6";
+import C7 from "Routes/C7";
+import C8 from "Routes/C8";
 
 
 export default () => (
