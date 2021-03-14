@@ -1,5 +1,10 @@
 import React from "react";
-import { HashRouter as Router, Route } from "react-router-dom";
+import {
+    BrowserRouter as Router,
+    Route,
+    Redirect,
+    Switch
+} from "react-router-dom";
 
 import Home from "Routes/Home";
 import C2 from "Routes/C2";
@@ -13,7 +18,7 @@ import C8 from "Routes/C8";
 
 export default () => (
     <Router>
-        <>
+        <Switch>
             <Route path="/" exact component={Home} />
             <Route path="/C2" exact component={C2} />
             <Route path="/C3" exact component={C3} />
@@ -22,6 +27,7 @@ export default () => (
             <Route path="/C6" exact component={C6} />
             <Route path="/C7" exact component={C7} />
             <Route path="/C8" exact component={C8} />
-        </>
+            <Redirect from="*" to="/" />
+        </Switch>
     </Router>
 );
