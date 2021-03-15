@@ -1,4 +1,5 @@
 import React from "react";
+import Header from "Components/Header";
 import {
     BrowserRouter as Router,
     Route,
@@ -18,6 +19,8 @@ import C8 from "Routes/C8";
 
 export default () => (
     <Router>
+        <>
+        <Header/>
         <Switch>
             <Route path="/" exact component={Home} />
             <Route path="/C2" exact component={C2} />
@@ -29,5 +32,6 @@ export default () => (
             <Route path="/C8" exact component={C8} />
             <Redirect from="*" to="/" />
         </Switch>
+        </>
     </Router>
 );
