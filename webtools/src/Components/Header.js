@@ -9,7 +9,7 @@ position: fixed;
 top: 0;
 left:0 ;
 width: 100%;
-height: 50px;
+height: 40px;
 display: flex;
 align-items: center;
 background-color: rgba(20, 20, 20, 0.8);
@@ -22,7 +22,7 @@ const List = styled.ul`
 `;
 
 const Item = styled.li`
-  width: 210px; 
+  width: 200px; 
   height: 50px;
   text-align: center;
   border-bottom: 2px solid
