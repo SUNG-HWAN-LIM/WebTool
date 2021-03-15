@@ -9,7 +9,7 @@ export default () => (
                 <a href="/">Home</a>
             </li>
             <li>
-                <a href="/C2">C2</a>
+                <a href="/C2">C2s</a>
             </li>
             <li>
                 <a href="/C3">C3</a>
