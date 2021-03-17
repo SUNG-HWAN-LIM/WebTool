@@ -1,3 +1,3 @@
-import SeacrhContainer from "./SeacrhContainer";
+import SeachContianer from "./SeachContianer";
 
-export default SeacrhContainer;
+export default SeachContianer;

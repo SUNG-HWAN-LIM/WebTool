@@ -10,7 +10,7 @@ import {
 import Home from "Routes/Home";
 import Search from "Routes/Search";
 import TV from "Routes/TV";
-import Detail from "Routes/Detail";
+import Detail from "Routes/Datail";
 
 
 export default () => (

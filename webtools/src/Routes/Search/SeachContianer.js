@@ -18,8 +18,8 @@ movieResults: null,
 tvResults:null,
 
 //searchTerm은 empty고 검색하고 엔터 누르면 로딩이 true가 되고 그 결과값을 여기다 넣는다
-searchTerm:"",
-loading:true,
+searchTerm:" asdsad", // 디폴트 인풋은 이 value 값을가진다
+loading:false,
 error:null
 };
 //첫번째 로직 handleSubmit : 누군가 폼에서 text를 입력하고 엔터를 누르면 그게 handleSubmit가 된다.
