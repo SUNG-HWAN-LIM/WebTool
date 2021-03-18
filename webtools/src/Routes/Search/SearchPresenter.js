@@ -1,35 +1,67 @@
 import React from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
+import Loader from "Components/Loader";
+import Section from "Components/Section";
+import Message from "../../Components/Message";
 
-const Container =styled.div ` `;
-
-const Form = styled.form`` ;
-
-const Input =styled.form ``;
-
-
-
-
-
+const Container = styled.div`
+  padding: 0px 20px;
+`;
+const Form = styled.form`
+  margin-bottom: 50px;
+  width: 100%;
+`;
+const Input = styled.input`
+  all: unset;
+  font-size: 28px;
+  width: 100%;
+`;
 const SearchPresenter = ({
   movieResults,
   tvResults,
   loading,
   searchTerm,
   handleSubmit,
-  error
-})=>( 
-
-//handlesubmit은 searchTerm과 searchs들을 찾는다
-//value를 가져야하는 이유 우린 우리의 input을 제어 할 수 있어야 한다
-//value(값) 을 java script 로부터 얻고싶다. 
-//서치 컨테이너에 state안에 searchTeam 이 있는 이유
-<Container>
-  <Form onSubmit= {handleSubmit}>  
- <Input placeholder = "Search Movies or TV Shows .." value={searchTerm}/> 
-  </Form>
-</Container>
+  error,
+  updateTerm
+}) => (
+  <Container>
+    <Form onSubmit={handleSubmit}>
+      <Input
+        placeholder="Search Movies or TV Shows..."
+        value={searchTerm}
+        onChange={updateTerm}
+      />
+    </Form>
+    {loading ? (
+      <Loader />
+    ) : (
+      <>
+        {movieResults && movieResults.length > 0 && (
+          <Section title="Movie Results">
+            {movieResults.map(movie => (
+              <span key={movie.id}>{movie.title}</span>
+            ))}
+          </Section>
+        )}
+        {tvResults && tvResults.length > 0 && (
+          <Section title="TV Show Results">
+            {tvResults.map(show => (
+              <span key={show.id}>{show.name}</span>
+            ))}
+          </Section>
+        )}
+        {error && <Message color="#e74c3c" text={error} />}
+        {tvResults &&
+         movieResults &&
+         tvResults.length === 0 &&
+         movieResults.length === 0 && (
+           <Message text="Nothing found" color="#95a5a6" />
+         )}
+            </>
+    )}
+  </Container>
 );
 SearchPresenter.propTypes = {
   movieResults: PropTypes.array,
@@ -37,7 +69,7 @@ SearchPresenter.propTypes = {
   error: PropTypes.string,
   searchTerm: PropTypes.string,
   loading: PropTypes.bool.isRequired,
-  handleSubmit: PropTypes.func.isRequired
+  handleSubmit: PropTypes.func.isRequired,
+  updateTerm: PropTypes.func.isRequired
 };
-
 export default SearchPresenter;

@@ -7,6 +7,7 @@ import React  from 'react';
 import SearchPresenter from "./SearchPresenter";
 
 
+
 //홈컨테이너는 상태 값을 가진다
 export default class extends React.Component{
 //상태 값은 3가지
@@ -18,23 +19,34 @@ movieResults: null,
 tvResults:null,
 
 //searchTerm은 empty고 검색하고 엔터 누르면 로딩이 true가 되고 그 결과값을 여기다 넣는다
-searchTerm:" asdsad", // 디폴트 인풋은 이 value 값을가진다
+searchTerm:" ", // 디폴트 인풋은 이 value 값을가진다 , 이건 state를 서로 가지고 있다
 loading:false,
 error:null
 };
 //첫번째 로직 handleSubmit : 누군가 폼에서 text를 입력하고 엔터를 누르면 그게 handleSubmit가 된다.
 //handleSubmit 은 searchTerm 이 빈칸 (공백) 아니널 체크하고 그 다음에 search 함수를 실행한다.
 
-handleSubmit = () => {
+handleSubmit = event => {
+  event.preventDefault();   //이벤트를 가로채다
  const  {searchTerm} = this.state;
 
  //searTerm이 빈문자열이 아니라면
  if( searchTerm !== ""){
    //searchTerm 이 공백이 아닐때 searchTerm을 인자로 넣고 searchByTerm을 호출한다]
-   this.searchByTerm()
+   this.searchByTerm();
  }
 };
 
+//presenter 한테보낸다
+//이것은 하나의 letter 만 얻는다 ,그걸 바꿔야 한다
+updateTerm = event =>{
+  const {
+    target : { value } 
+}  = event;
+  this.setState({
+    searchTerm : value
+  });
+;}
 
  
 // 이 함수는 term 인자를 받고
@@ -42,13 +54,14 @@ handleSubmit = () => {
 searchByTerm = async() =>{
 
  const  {searchTerm} = this.state;
+ this.setState({loading: true});
  try{
 const{
-  data : {reslts :movieResults}
+  data : {results :movieResults}
  } = await moviesApi.search(searchTerm) ;
 
 const {
-  data : {reslts :tvResults}
+  data : {results :tvResults}
   }  =await tvApi.search(searchTerm);
 
 this.setState({
@@ -60,7 +73,7 @@ this.setState({error :"Can't find results."})
  }finally{
    this.setState({loading : false});
  }
-}
+};
 
 // 이곳에 모든 로직을 추가 (api 가져오고  eroor 처리하는 모든것들)
 
@@ -68,20 +81,23 @@ this.setState({error :"Can't find results."})
 render(){
   //object destructuring(객체 비구조 할당 )사용
  const {movieResults,tvResults, searchTerm,loading,error}=this.state;
-  return <SearchPresenter
+  return (
+  <SearchPresenter
         searchTerm ={searchTerm}
         tvResults={tvResults}
-         searchTerm={searchTerm}
+         searchTerm={searchTerm}  //이것을 presenter로 전달한다
        loading={loading}
        error={error}
       //handleSubmit 함수를 SearchPresenter에다가 보내야한다
       //누군가 폼을 제출할때 handleSubmit 을 호출
        handleSubmit ={this.handleSubmit}
+       updateTerm={this.updateTerm}
 
   />
   //searchPresenter 에서 폼을 만들고 폼 셋업하고 onSubmit을 호출한다
   //this.handleSubmit을 호출하기 위해
   //handleSubmit은 searchByTerm을 호출하고 searchByTerm이 모든걸 작업들을 준비한다
+  );
 }
 
 }
