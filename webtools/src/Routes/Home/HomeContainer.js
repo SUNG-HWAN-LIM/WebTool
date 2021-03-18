@@ -34,7 +34,6 @@ async componentDidMount(){  //자바스크립트는 componentDidMount를 실행�
 
    const {data : {results : popular}}= await moviesApi.popular();
 
-   throw Error();
 
     this.setState({
       nowPlaying ,
