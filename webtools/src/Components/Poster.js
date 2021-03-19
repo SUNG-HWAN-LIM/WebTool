@@ -33,16 +33,21 @@ position : relative;
   ${Image} {
     opacity: 0.3;
   }
+  
   ${Rating}{
     opacity:1;
   }
  
 `;
 
+
 const Title = styled.span`
 dispaly:block;
 margin-bottom:5px;
 `;
+
+
+
 const Year = styled.span`
 font-size:10px;
 color:rgba(255,255,255,0.5);
@@ -57,6 +62,14 @@ const Poster = ({ id, imageUrl, title, rating, year, isMovie = false }) => (
     <Container>
       <ImageContainer>
         <Image bgUrl={imageUrl} />
+       
+        {/* <Image
+          bgUrl={
+            imageUrl
+              ? `https://image.tmdb.org/t/p/${imageUrl}`
+              : require("../assets/noPosterSmall.png")
+          }
+        /> */}
         <Rating>
           <span role="img" aria-label="rating">
             ⭐️
@@ -73,7 +86,6 @@ const Poster = ({ id, imageUrl, title, rating, year, isMovie = false }) => (
 );
 
 Poster.propTypes = {
-    //id 가 필요한 이유는 우리 user 에게 /아니면/IDpropTypes를 보내야 하기 때문이다  
   id: PropTypes.number.isRequired,
   imageUrl: PropTypes.string,
   title: PropTypes.string.isRequired,
@@ -81,5 +93,5 @@ Poster.propTypes = {
   year: PropTypes.string,
   isMovie: PropTypes.bool
 };
-
+ //id 가 필요한 이유는 우리 user 에게 /아니면/IDpropTypes를 보내야 하기 때문이다  
 export default Poster;

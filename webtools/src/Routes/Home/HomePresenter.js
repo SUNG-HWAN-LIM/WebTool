@@ -7,8 +7,8 @@ import Message from "../../Components/Message";
 import Poster from "../../Components/Poster";
 
 const Container = styled.div`
-  padding: 0px 20px;
-`;
+  padding:  20px;
+  `;
 
 //stuff(HomePresenter)는 항상 load 되어야한다.(length 혹은 map에 의해 시작하면 작동을 안한다 왜냐하면 loader 되지 않았기 때문이다)
 const HomePresenter = ({ nowPlaying, popular, upcoming, loading, error }) =>
