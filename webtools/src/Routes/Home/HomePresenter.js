@@ -1,6 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
+import Helmet from "react-helmet";
 import Section from "Components/Section";
 import Loader from "../../Components/Loader";
 import Message from "../../Components/Message";
@@ -11,11 +12,19 @@ const Container = styled.div`
   `;
 
 //stuff(HomePresenter)는 항상 load 되어야한다.(length 혹은 map에 의해 시작하면 작동을 안한다 왜냐하면 loader 되지 않았기 때문이다)
-const HomePresenter = ({ nowPlaying, popular, upcoming, loading, error }) =>
-  loading ? (
+const HomePresenter = ({ nowPlaying, popular, upcoming, loading, error }) =>(
+      <>
+      <Helmet>
+<title>Movie l Nomflix</title>
+      </Helmet>
+      {loading ? (
     <Loader />
   ) : (
+    //Helmet 를 렌더링 해주면 이 Component는 body에 나오는게 아니라 head에 보여진다
+    //helmet에 넣고 title은 놈플릭스 안의 영화에 들어 간다.
+
     <Container>
+  
       {nowPlaying && nowPlaying.length > 0 && (
         <Section title="Now Playing">
           {nowPlaying.map(movie => (
@@ -66,6 +75,9 @@ const HomePresenter = ({ nowPlaying, popular, upcoming, loading, error }) =>
       )}
       {error && <Message color="#e74c3c" text={error} />}
     </Container>
+  )}
+      </>
+     
   );
 HomePresenter.propTypes = {
   nowPlaying: PropTypes.array,
